@@ -6,7 +6,7 @@ using System.Text;
 namespace Demo
 {
     [Table("tblUser")]
-    public class User
+    public class tblUser
     {
         [Key]
         public int Id { get; set; }
