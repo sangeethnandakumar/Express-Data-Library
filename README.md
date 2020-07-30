@@ -1,6 +1,7 @@
 # Express.Data
 
-Express.Data allows easy SQL data transaction by making use of Dapper, DapperContrib and DTO classes.
+Express.Data allows playing with database queries easy by making use of Dapper, DapperContrib and DTO classes.
+
 This library is a wrapper around the popular Dapper micro ORM and it's extension Dapper.Contrib.
 The library exposes easy to use API for all kind of CRUD operations.
 
