@@ -1,9 +1,11 @@
 # Express.Data
 
-Express.Data allows playing with database queries easy by making use of Dapper, DapperContrib and DTO classes.
+If your project needs to fire queries to a relational database often at different places of your code. This library will be helpfull.
 
+Express.Data allows playing with database queries easy by making use of Dapper, DapperContrib and DTO classes. Examples are provided below.
 This library is a wrapper around the popular Dapper micro ORM and it's extension Dapper.Contrib.
-The library exposes easy to use API for all kind of CRUD operations.
+
+The library exposes easy to use API for all kind of database CRUD operations.
 
 ### Package Manager
 The library will be soon available on NuGet
