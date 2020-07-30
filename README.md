@@ -13,29 +13,43 @@ Version Information
 
 
 ### Usage
-Query a scalar
+Insert a modal
 ```csharp
-var data = SqlHelper.Query<string>("SELECT Firstname FROM tblStudents WHERE Id=1", _connectionString).FirstOrDefault();
+var record = new tblUser {
+	Id = 1,
+	FName = "Sangeeth",
+	LName = "Nandakumar"
+};
+var primaryKey = SqlHelper.Insert < tblUser > (record, _connectionString);
 ```
-Query a model/dto object
+Update a modal
 ```csharp
-var data = SqlHelper.Query<User>("SELECT TOP(1) * FROM tblUsers", _connectionString).FirstOrDefault();
+record = new tblUser {
+	Id = 1,
+	FName = "Navaneeth",
+	LName = "Nandakumar"
+};
+var isUpdated = SqlHelper.Update < tblUser > (record, _connectionString);
 ```
-Query a list of model/dto object
+Run a query
 ```csharp
-var data = SqlHelper.Query<User>("SELECT TOP(1) * FROM tblUsers", _connectionString);
+var sql1 = $ "SELECT * FROM tblUser WHERE Id=1";
+var result = SqlHelper.Query < tblUser > (sql1, _connectionString).FirstOrDefault();
 ```
-Call a stored procedure
+Run a safe query (Parameterised query)
 ```csharp
-var data = SqlHelper.Exec<User>("sp_GetUsers", _connectionString);
+var sql2 = $ "SELECT * FROM tblUser WHERE Id=@id AND Fname=@fname";
+result = SqlHelper.QuerySafe < tblUser > (sql2, new {
+	id = 1,
+	fname = "Navaneeth"
+},
+_connectionString);
 ```
-Insert a record modal
+Run a stored procedure
 ```csharp
-var user = new User("fname", "lname");
-var data = SqlHelper.Insert(user, _connectionString);
-```
-Update a record modal
-```csharp
-var user = new User("fname", "lname");
-var data = SqlHelper.Update(user, _connectionString);
+var procedureName = $ "spGetUsers";
+result = SqlHelper.Execute < tblUser > (procedureName, new {
+	id = 1
+},
+_connectionString).FirstOrDefault();
 ```
