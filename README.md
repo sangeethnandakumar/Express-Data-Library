@@ -1,41 +1,95 @@
 # Express.Data
 
-Express.Data allows easy SQL data transaction by making use of Dapper, DapperContrib and DTO classes 
+If your project needs to fire queries to a relational database often at different places of your code. This lightweight library will be helpfull.
+
+Express.Data allows playing with database queries easy by making use of Dapper, DapperContrib and DTO classes. Examples are provided below.
+This library is a wrapper around the popular Dapper micro ORM and it's extension Dapper.Contrib. It works with any relational database and runs over ADO.NET and DapperMicroORM
+
+The library exposes easy to use API for all kind of database CRUD operations.
+
+![alt text](https://lh3.googleusercontent.com/proxy/B_7eIUlcSWIhijMsKkvsKeB4sv5ZqG8cOGXyWFKIrIAgPlQTL_RyHreEs5bCSthMBUgPzIuifuFL89mIzpZfMhA)
+
+### Package Manager
+The library is available free on NuGet
+https://www.nuget.org/packages/Twileloop.ExpressData
+
+```nuget
+Install-Package Twileloop.ExpressData -Version 1.0.0
+```
 
 ### Versions
-
 Version Information
+| Version | Change log
+| ------ | ------ | ------ |
+| v1.1 | Basic CRUD Operations support
 
-| Version | Change log |
-| ------ | ------ |
-| 1.1 | Dapper 1.1, Dapper.Contrib 1.1 |
+### Repository Contents
+This repo maintains 2 projects. The main library and a demo project to implement it
 
+### PreRequesties
+Before running the demo program
+1. Create a table named tblUsers
+2. Create 3 columns Id, Fname and Lname
+3. Set the connection string to database server inside Main()
 
 
 ### Usage
-Query a scalar
+C# POCO Model building.
+The model should be decorated with Dapper.Contrib attributes for proper working. Here is an example
 ```csharp
-var data = SqlHelper.Query<string>("SELECT Firstname FROM tblStudents WHERE Id=1", _connectionString).FirstOrDefault();
+using Dapper.Contrib.Extensions;
+
+namespace Demo
+{
+    [Table("tblUser")]
+    public class tblUser
+    {
+        [Key]
+        public int Id { get; set; }
+        public string FName { get; set; }
+        public string LName { get; set; }
+        [Computed]
+        public string Fullname { get; set; }
+    }
+}
 ```
-Query a model/dto object
+Insert a model
 ```csharp
-var data = SqlHelper.Query<User>("SELECT TOP(1) * FROM tblUsers", _connectionString).FirstOrDefault();
+var record = new tblUser {
+	Id = 1,
+	FName = "Sangeeth",
+	LName = "Nandakumar"
+};
+var primaryKey = SqlHelper.Insert < tblUser > (record, _connectionString);
 ```
-Query a list of model/dto object
+Update a model
 ```csharp
-var data = SqlHelper.Query<User>("SELECT TOP(1) * FROM tblUsers", _connectionString);
+record = new tblUser {
+	Id = 1,
+	FName = "Navaneeth",
+	LName = "Nandakumar"
+};
+var isUpdated = SqlHelper.Update < tblUser > (record, _connectionString);
 ```
-Call a stored procedure
+Run a query
 ```csharp
-var data = SqlHelper.Exec<User>("sp_GetUsers", _connectionString);
+var sql1 = $ "SELECT * FROM tblUser WHERE Id=1";
+var result = SqlHelper.Query < tblUser > (sql1, _connectionString).FirstOrDefault();
 ```
-Insert a record modal
+Run a safe query (Parameterised query)
 ```csharp
-var user = new User("fname", "lname");
-var data = SqlHelper.Insert(user, _connectionString);
+var sql2 = $ "SELECT * FROM tblUser WHERE Id=@id AND Fname=@fname";
+result = SqlHelper.QuerySafe < tblUser > (sql2, new {
+	id = 1,
+	fname = "Navaneeth"
+},
+_connectionString);
 ```
-Update a record modal
+Run a stored procedure
 ```csharp
-var user = new User("fname", "lname");
-var data = SqlHelper.Update(user, _connectionString);
+var procedureName = $ "spGetUsers";
+result = SqlHelper.Execute < tblUser > (procedureName, new {
+	id = 1
+},
+_connectionString).FirstOrDefault();
 ```
