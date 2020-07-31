@@ -10,19 +10,21 @@ The library exposes easy to use API for all kind of database CRUD operations.
 ![alt text](https://lh3.googleusercontent.com/proxy/B_7eIUlcSWIhijMsKkvsKeB4sv5ZqG8cOGXyWFKIrIAgPlQTL_RyHreEs5bCSthMBUgPzIuifuFL89mIzpZfMhA)
 
 ### Package Manager
-The library will be soon available on NuGet
+The library is available free on NuGet
+https://www.nuget.org/packages/Twileloop.ExpressData
+
+```nuget
+Install-Package Twileloop.ExpressData -Version 1.0.0
+```
 
 ### Versions
-
 Version Information
-
-| Version | Change log | dll Download
+| Version | Change log
 | ------ | ------ | ------ |
-| v1.1 | Basic CRUD Operations support under SqlHelper class | Download
+| v1.1 | Basic CRUD Operations support
 
 ### Repository Contents
 This repo maintains 2 projects. The main library and a demo project to implement it
-
 
 ### PreRequesties
 Before running the demo program
