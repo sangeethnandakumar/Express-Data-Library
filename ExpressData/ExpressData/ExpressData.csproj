@@ -2,12 +2,33 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>Twileloop.ExpressData</PackageId>
+    <Authors>Sangeeth Nandakumar</Authors>
+    <Company>Twileloop</Company>
+    <PackageProjectUrl>https://github.com/sangeethnandakumar/expressdata</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/sangeethnandakumar/expressdata</RepositoryUrl>
+    <RepositoryType>Open Source</RepositoryType>
+    <Description>If your project needs to fire queries to a relational database often at different places of your code. This lightweight library will be helpfull.
+
+Express.Data allows playing with database queries easy by making use of Dapper, DapperContrib and DTO classes. Examples are provided below. This library is a wrapper around the popular Dapper micro ORM and it's extension Dapper.Contrib. It works with any relational database and runs over ADO.NET and DapperMicroORM
+
+The library exposes easy to use API for all kind of database CRUD operations.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>expressdata.png</PackageIcon>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.35" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.35" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\Pictures\expressdata.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -27,7 +27,7 @@ namespace Demo
                 Id = 1,
                 FName = "Sangeeth",
                 LName = "Nandakumar"
-            };            
+            };
             var primaryKey = SqlHelper.Insert<tblUser>(record, _connectionString);
 
             //Update
@@ -36,7 +36,7 @@ namespace Demo
                 Id = 1,
                 FName = "Navaneeth",
                 LName = "Nandakumar"
-            };            
+            };
             var isUpdated = SqlHelper.Update<tblUser>(record, _connectionString);
             #endregion
 
