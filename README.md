@@ -7,7 +7,7 @@ This library is a wrapper around the popular Dapper micro ORM and it's extension
 
 The library exposes easy to use API for all kind of database CRUD operations.
 
-![alt text](https://lh3.googleusercontent.com/proxy/B_7eIUlcSWIhijMsKkvsKeB4sv5ZqG8cOGXyWFKIrIAgPlQTL_RyHreEs5bCSthMBUgPzIuifuFL89mIzpZfMhA)
+![alt text](https://d585tldpucybw.cloudfront.net/sfimages/default-source/productsimages/justmock/justmock__net_770.png?sfvrsn=b4522579_1)
 
 ### Package Manager
 The library is available free on NuGet
